@@ -1,6 +1,8 @@
-import LogoImageUrl from "../assets/img/Logo.png";
+import starship from "../assets/img/starship.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useFetchData } from "../hooks/useFetchData.jsx";
 
 export const Home = () => {
 
@@ -8,94 +10,96 @@ export const Home = () => {
 
 	const [error, setError] = useState("");
 
+	const { loadPeople, loadPlanets, loadStarships } = useFetchData(dispatch, setError);
+
 	useEffect(() => {
-		LoadPeople();
-		LoadPlanets();
-		LoadStarships();
+		loadPeople();
+		loadPlanets();
+		loadStarships();
 	}, []);
 
-	////////////////////////////////////////////////////
-
-	const LoadPeople = () => {
-		fetch(`https://www.swapi.tech/api/people?limit=100`)
-			.then(res => res.json())
-			.then(data => {
-				dispatch({
-					type: "load_people",
-					payload: data.results,
-				});
-			})
-			.catch(() => setError("Error al cargar personajes"));
-	};
-
-	///////////////////////////////////////////////////////
-
-	const LoadPlanets = () => {
-		fetch(`https://www.swapi.tech/api/planets?limit=100`)
-			.then(res => res.json())
-			.then(data => {
-				dispatch({
-					type: "load_planets",
-					payload: data.results,
-				});
-			})
-			.catch(() => setError("Error al cargar personajes"));
-	};
-
-	///////////////////////////////////////////////////////
-
-	const LoadStarships = () => {
-		fetch(`https://www.swapi.tech/api/starships?limit=100`)
-			.then(res => res.json())
-			.then(data => {
-				dispatch({
-					type: "load_starships",
-					payload: data.results,
-				});
-			})
-			.catch(() => setError("Error al cargar personajes"));
-	};
-
-	//////////////////////////////////////////////////////
-
+	////////////////////////////////////////////////////////////////////////////////////////////
 	return (
-		<div className="text-center mt-5">
-			<h1>YOUR FAVOURITE BLOG</h1>
-			<p>
-				<img src={LogoImageUrl} />
+		<div className="mt-5 px-5 mx-5">
+			<p className="text-center">
+				<img src={starship} />
 			</p>
 
-			<div>
-				<h1>PERSONAJES</h1>
-				<ul className="list-unstyled">
+			<div className="mt-5">
+				<h1 className="text-danger mb-3">Characters</h1>
+				<div className="d-flex overflow-auto gap-3 py-2">
 					{store.people.map((person) => (
-						<li key={person.uid}>
-							<strong>{person.name}</strong> (ID: {person.uid})
-						</li>
+						<div className="card" style={{ minWidth: "18rem" }} key={person.uid}>
+							<img src="src/assets/img/400x200.png" className="card-img-top" />
+							<div className="card-body">
+								<h5 className="card-title">{person.name}</h5>
+								<p className="mb-0">ID: {person.uid}</p>
+								<p className="mb-0"> Lorem ipsum </p>
+								<p> Lorem ipsum </p>
+								<div className="d-flex justify-content-between">
+									<Link to={`/single/${person.uid}`} className="btn btn-outline-primary">Learn More!</Link>
+									<button className="btn btn-outline-warning" onClick={() => {
+										if (!store.favorites.some(f => f.uid === person.uid)) {
+											dispatch({ type: "add_to_favorites", payload: { ...person, type: "person" } });
+										}
+									}}><i className={`bi ${store.favorites.some(f => f.uid === person.uid && f.type === "person") ? "bi-heart-fill" : "bi-heart"}`}></i></button>
+								</div>
+							</div>
+						</div>
 					))}
-				</ul>
+				</div>
 			</div>
 
-			<div>
-				<h1>PLANETAS</h1>
-				<ul className="list-unstyled">
+			<div className="mt-5">
+				<h1 className="text-danger mb-3">Planets</h1>
+				<div className="d-flex overflow-auto gap-3 py-2">
 					{store.planets.map((planet) => (
-						<li key={planet.uid}>
-							<strong>{planet.name}</strong> (ID: {planet.uid})
-						</li>
+						<div className="card" style={{ minWidth: "18rem" }} key={planet.uid}>
+							<img src="src/assets/img/400x200.png" className="card-img-top" />
+							<div className="card-body">
+								<h5 className="card-title">{planet.name}</h5>
+								<p className="mb-0">ID: {planet.uid}</p>
+								<p className="mb-0"> Lorem ipsum </p>
+								<p> Lorem ipsum </p>
+								<div className="d-flex justify-content-between">
+									<Link to={`/single/${planet.uid}`} className="btn btn-outline-primary">Learn More!</Link>
+									<button className="btn btn-outline-warning" onClick={() => {
+										if (!store.favorites.some(f => f.uid === planet.uid)) {
+											dispatch({ type: "add_to_favorites", payload: { ...planet, type: "planet" } });
+										}
+									}}>
+										<i className={`bi ${store.favorites.some(f => f.uid === planet.uid && f.type === "planet") ? "bi-heart-fill" : "bi-heart"}`}></i>
+									</button>
+								</div>
+							</div>
+						</div>
 					))}
-				</ul>
+				</div>
 			</div>
 
-			<div>
-				<h1>NAVES</h1>
-				<ul className="list-unstyled">
+			<div className="mt-5">
+				<h1 className="text-danger mb-3">Starships</h1>
+				<div className="d-flex overflow-auto gap-3 py-2">
 					{store.starships.map((starship) => (
-						<li key={starship.uid}>
-							<strong>{starship.name}</strong> (ID: {starship.uid})
-						</li>
+						<div className="card" style={{ minWidth: "18rem" }} key={starship.uid}>
+							<img src="src/assets/img/400x200.png" className="card-img-top" />
+							<div className="card-body">
+								<h5 className="card-title">{starship.name}</h5>
+								<p className="mb-0">ID:{starship.uid}</p>
+								<p className="mb-0"> Lorem ipsum </p>
+								<p> Lorem ipsum </p>
+								<div className="d-flex justify-content-between">
+									<Link to={`/single/${starship.uid}`} className="btn btn-outline-primary">Learn More!</Link>
+									<button className="btn btn-outline-warning" onClick={() => {
+										if (!store.favorites.some(f => f.uid === starship.uid)) {
+											dispatch({ type: "add_to_favorites", payload: { ...starship, type: "starship" } });
+										}
+									}}><i className={`bi ${store.favorites.some(f => f.uid === starship.uid && f.type === "starship") ? "bi-heart-fill" : "bi-heart"}`}></i></button>
+								</div>
+							</div>
+						</div>
 					))}
-				</ul>
+				</div>
 			</div>
 
 

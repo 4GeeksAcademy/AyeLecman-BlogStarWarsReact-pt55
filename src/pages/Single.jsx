@@ -1,37 +1,45 @@
-// Import necessary hooks and components from react-router-dom and other libraries.
-import { Link, useParams } from "react-router-dom";  // To use link for navigation and useParams to get URL parameters
-import PropTypes from "prop-types";  // To define prop types for this component
-import rigoImageUrl from "../assets/img/rigo-baby.jpg"  // Import an image asset
-import useGlobalReducer from "../hooks/useGlobalReducer";  // Import a custom hook for accessing the global state
+import { Link, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
+import useGlobalReducer from "../hooks/useGlobalReducer";
+import SingleImg from "../assets/img/800x600.png";
 
-// Define and export the Single component which displays individual item details.
 export const Single = props => {
-  // Access the global state using the custom hook.
+
   const { store } = useGlobalReducer()
 
-  // Retrieve the 'theId' URL parameter using useParams hook.
   const { theId } = useParams()
-  const singleTodo = store.todos.find(todo => todo.id === parseInt(theId));
+  const character = store.people.find(person => person.uid === theId);
 
   return (
-    <div className="container text-center">
-      {/* Display the title of the todo element dynamically retrieved from the store using theId. */}
-      <h1 className="display-4">Todo: {singleTodo?.title}</h1>
-      <hr className="my-4" />  {/* A horizontal rule for visual separation. */}
+    <div className="container mt-5">
+      <div className="row align-items-center">
 
-      {/* A Link component acts as an anchor tag but is used for client-side routing to prevent page reloads. */}
-      <Link to="/">
-        <span className="btn btn-primary btn-lg" href="#" role="button">
-          Back home
-        </span>
-      </Link>
+        <div className="col-md-6 text-center mb-2">
+          <img
+            src={SingleImg}
+            className="img-fluid"
+            style={{ maxHeight: "600px" }}
+            alt={character?.name}
+          />
+        </div>
+
+        <div className="col-md-6">
+          <h1 className="display-4 fw-semibold text-center">{character?.name}</h1>
+          <p className="mt-3 lh-base">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non leo eu leo aliquet tincidunt et lobortis sapien. Nam sollicitudin nulla sapien, ut laoreet dui pretium vel. Sed a lectus dapibus, laoreet lectus ac, varius elit. Quisque lobortis eros nunc, cursus efficitur libero tempor sed. Mauris vulputate lorem nec massa egestas pharetra. Duis lacinia volutpat turpis. Mauris ac erat vitae justo molestie sodales. Quisque ultricies dapibus aliquam. Aliquam tincidunt imperdiet ante vel tempus. Aenean enim nisl, porta eget purus et, sollicitudin maximus leo.
+          </p>
+          <div className="text-end mt-5 pt-5">
+            <Link to="/" className="btn btn-primary btn-sm">
+              Back home
+            </Link>
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 };
 
-// Use PropTypes to validate the props passed to this component, ensuring reliable behavior.
 Single.propTypes = {
-  // Although 'match' prop is defined here, it is not used in the component.
-  // Consider removing or using it as needed.
   match: PropTypes.object
 };
