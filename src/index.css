@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
+
+h1, h2, h3, .dropdown-toggle {
+  font-family: 'Barlow', Helvetica, sans-serif;
+}
+
+.navbar-logo {
+    height: 80px; /* tamaño normal */
+}
+
+@media (max-width: 576px) { /* pantallas chicas */
+    .navbar-logo {
+        height: 50px; /* más chico en móvil */
+    }
+}
+
+/* Card general */
+.card {
+    min-width: 18rem; /* tamaño normal */
+}
+
+/* En pantallas chicas, hacerlas más compactas */
+@media (max-width: 576px) {
+    .card {
+        min-width: 12rem; /* más angostas en mobile */
+        margin-right: 0.5rem; /* menos margen */
+    }
+
+    .px-5.mx-5 {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}

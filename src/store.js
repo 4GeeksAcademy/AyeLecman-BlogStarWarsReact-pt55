@@ -31,11 +31,13 @@ const storeReducer = (store, action) => {
         ...store,
         favorites: [...store.favorites, action.payload]
       };
-    
+
     case "delete_favorites":
       return {
         ...store,
-        favorites: store.favorites.filter(f => f.uid !== action.payload.uid)
+        favorites: store.favorites.filter(
+          f => !(f.uid === action.payload.uid && f.type === action.payload.type)
+        )
       };
 
     default:
