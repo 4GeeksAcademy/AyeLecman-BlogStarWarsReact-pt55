@@ -21,9 +21,12 @@ export const Home = () => {
 	////////////////////////////////////////////////////////////////////////////////////////////
 	return (
 		<div className="mt-5 px-5 mx-5">
-			
+
 			<div className="mt-5">
-				<h1 className="text-danger mb-3">Characters</h1>
+				<div className="d-flex justify-content-between align-items-center">
+					<h1 className="text-danger mb-2">Characters</h1>
+					<Link to="/show-all/people" className="btn btn-link">Show All</Link>
+				</div>
 				<div className="d-flex overflow-auto gap-3 py-2">
 					{store.people.map(person => (
 						<CardComponent
@@ -37,8 +40,13 @@ export const Home = () => {
 				</div>
 			</div>
 
+			<hr />
+
 			<div className="mt-5">
-				<h1 className="text-danger mb-3">Planets</h1>
+				<div className="d-flex justify-content-between align-items-center">
+					<h1 className="text-danger mb-2">Planets</h1>
+					<Link to="/show-all/people" className="btn btn-link">Show All</Link>
+				</div>
 				<div className="d-flex overflow-auto gap-3 py-2">
 					{store.planets.map(planet => (
 						<CardComponent
@@ -52,8 +60,13 @@ export const Home = () => {
 				</div>
 			</div>
 
+			<hr />
+
 			<div className="mt-5">
-				<h1 className="text-danger mb-3">Starships</h1>
+				<div className="d-flex justify-content-between align-items-center">
+					<h1 className="text-danger mb-2">Starships</h1>
+					<Link to="/show-all/people" className="btn btn-link">Show All</Link>
+				</div>
 				<div className="d-flex overflow-auto gap-3 py-2">
 					{store.starships.map(starship => (
 						<CardComponent
