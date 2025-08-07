@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import placeholderImg from "../assets/img/400x200.png";
+import peoplePlaceholder from "../assets/img/PeoplePic.png";
+import planetsPlaceholder from "../assets/img/PlanetPic.png";
+import starshipsPlaceholder from "../assets/img/StarshipPic.png";
 
 export const CardComponent = ({ item, type, store, dispatch }) => {
 	const isFavorite = store.favorites.some(f => f.uid === item.uid && f.type === type);
@@ -10,11 +12,20 @@ export const CardComponent = ({ item, type, store, dispatch }) => {
 		}
 	};
 
+	const placeholderMap = {
+		people: peoplePlaceholder,
+		planets: planetsPlaceholder,
+		starships: starshipsPlaceholder
+	};
+
 	return (
 		<div className="card" key={item.uid}>
-			<img 
-			src={`https://github.com/breatheco-de/swapi-images/blob/master/public/images/${type}/${item.uid}.jpg?raw=true`} 
-			onError={(e) => { e.target.src = placeholderImg; }}
+			<img
+				src={`https://github.com/breatheco-de/swapi-images/blob/master/public/images/${type}/${item.uid}.jpg?raw=true`}
+				onError={(e) => {
+					e.target.onerror = null; 
+					e.target.src = placeholderMap[type]; 
+				}}
 			/>
 			<div className="card-body">
 				<h5 className="card-title">{item.name}</h5>

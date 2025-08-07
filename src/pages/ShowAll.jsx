@@ -6,7 +6,7 @@ export const ShowAll = () => {
   const { store, dispatch } = useGlobalReducer();
   const { type } = useParams();
 
-  const items = store[type] || [];
+  const items = store[type];
 
   return (
     <div className="container mt-5">
