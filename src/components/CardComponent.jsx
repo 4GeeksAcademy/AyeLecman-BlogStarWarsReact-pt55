@@ -9,6 +9,8 @@ export const CardComponent = ({ item, type, store, dispatch }) => {
 	const handleFavoriteClick = () => {
 		if (!isFavorite) {
 			dispatch({ type: "add_to_favorites", payload: { ...item, type } });
+		} else {
+			dispatch({ type: "delete_favorites", payload: { ...item, type } });
 		}
 	};
 
@@ -23,8 +25,8 @@ export const CardComponent = ({ item, type, store, dispatch }) => {
 			<img
 				src={`https://github.com/breatheco-de/swapi-images/blob/master/public/images/${type}/${item.uid}.jpg?raw=true`}
 				onError={(e) => {
-					e.target.onerror = null; 
-					e.target.src = placeholderMap[type]; 
+					e.target.onerror = null;
+					e.target.src = placeholderMap[type];
 				}}
 			/>
 			<div className="card-body">
