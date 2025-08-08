@@ -91,16 +91,11 @@ CardComponent muestra cada elemento y permite ir al detalle o agregarlo a favori
 Single vuelve a consultar la API para mostrar datos más completos.
 
 ## 🔮 Posibles mejoras y futuras implementaciones
---> Persistencia de favoritos en localStorage o IndexedDB para mantenerlos tras recargar la página.
-
---> Búsqueda y filtrado por nombre o categoría.
-
---> Paginación para manejar grandes cantidades de datos sin afectar el rendimiento.
-
---> Pruebas unitarias con Jest/React Testing Library.
-
---> Optimización de carga de imágenes para mejorar tiempos de respuesta.
-
---> Tema oscuro conmutando estilos dinámicamente.
+- [ ] Persistencia de favoritos utilizando localStorage o IndexedDB para mantenerlos incluso después de recargar la página.
+- [ ] Búsqueda y filtrado avanzados por nombre, categoría o atributos específicos.
+- [ ] Paginación o carga progresiva para manejar grandes volúmenes de datos sin afectar el rendimiento.
+- [ ] Pruebas unitarias y de integración con Jest y React Testing Library para garantizar la calidad del código.
+- [ ] Optimización de carga de imágenes mediante lazy loading y compresión para mejorar la velocidad de respuesta.
+- [ ] Tema oscuro/dinámico con cambio de estilos en tiempo real.
 
 ### 💡 Desarrollado como parte del bootcamp de 4Geeks Academy
