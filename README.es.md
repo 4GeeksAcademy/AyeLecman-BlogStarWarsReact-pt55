@@ -18,6 +18,7 @@ Incluye navegación entre secciones, detalle de elementos, y un sistema de favor
 
 ## 📂 Estructura del proyecto
 
+```plaintext
 src/
 ├── assets/        # Imágenes y recursos estáticos
 ├── components/    # Componentes reutilizables (Card, Navbar, Footer, etc.)
@@ -26,8 +27,7 @@ src/
 ├── store/         # Estado global (Context + Reducer)
 ├── main.jsx       # Punto de entrada de la app
 └── index.css      # Estilos globales
-
-
+```
 ---
 
 ## ⚙️ Instalación y ejecución
@@ -60,20 +60,23 @@ npm run start
 
 📸 **Capturas de pantalla**
 
-![Texto alternativo](src/assets/img/CapturasBSW (1).png)
-![Texto alternativo](src/assets/img/CapturasBSW (2).png)
+![Texto alternativo](src/assets/img/CapturasBSW1.png)
+![Texto alternativo](src/assets/img/CapturasBSW2.png)
 ![Texto alternativo](src/assets/img/CapturasBSW.png)
 
 🔄 **Diagrama de flujo de datos**
 
-A[Componente Home] -->|Usa| B[useFetchData]
-B -->|fetch API| C[(SWAPI)]
-B -->|dispatch| D[Store Global]
-D --> E[CardList]
-E --> F[CardComponent]
-F -->|Click en 'Learn More'| G[Single]
-G -->|fetch API con ID| C
-F -->|Click en 'Favorito'| D
+```mermaid
+flowchart TD
+    A[Componente Home] -->|Usa| B[useFetchData]
+    B -->|fetch API| C[(SWAPI)]
+    B -->|dispatch| D[Store Global]
+    D --> E[CardList]
+    E --> F[CardComponent]
+    F -->|Click en 'Learn More'| G[Single]
+    G -->|fetch API con ID| C
+    F -->|Click en 'Favorito'| D
+```
 
 📌 Explicación del flujo:
 
